@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>お問い合わせ | 真響電機</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main>
+
+    <div class="breadcrumb">
+        <a href="index.html">HOME</a>
+        ＞ お問い合わせ
+    </div>
+
+    <section class="company-content">
+
+        <article class="main-content">
+
+            <h2>お問い合わせ</h2>
+
+            <p>
+                製品のご購入、ご相談、お見積もりのご依頼は
+                以下のフォームをご利用ください。
+            </p>
+
+            <form id="contactForm">
+
+                <label>お名前</label>
+                <input type="text" id="name">
+
+                <label>お電話番号</label>
+                <input type="text" id="tel">
+
+                <label>メールアドレス</label>
+                <input type="email" id="email">
+
+                <label>お問い合わせ内容</label>
+
+                <textarea id="message"></textarea>
+               
+
+                <button type="button" onclick="sendMail()">
+                    メール作成
+                </button>
+
+            </form>
+
+        </article>
+
+    </section>
+
+</main>
+
+<div id="footer"></div>
+
+<script src="common.js"></script>
+
+<script>
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const product =
+    params.get("product");
+
+if(product){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            document.getElementById("message").value =
+                "購入希望製品：" +
+                product +
+                "\n\n";
+
+        }
+    );
+}
+
+</script>
+
+<script>
+
+function sendMail(){
+
+    const name =
+        document.getElementById("name").value;
+
+    const tel =
+        document.getElementById("tel").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const message =
+        document.getElementById("message").value;
+
+    const subject =
+        encodeURIComponent("真響電機へのお問い合わせ");
+
+    const body =
+        encodeURIComponent(
+            "お名前：" + name + "\n" +
+            "電話番号：" + tel + "\n" +
+            "メール：" + email + "\n\n" +
+            "お問い合わせ内容\n" +
+            message
+        );
+
+    location.href =
+        "mailto:yusei-kni@outlook.jp?subject="
+        + subject +
+        "&body="
+        + body;
+}
+
+</script>
+
+</body>
+</html>
+
