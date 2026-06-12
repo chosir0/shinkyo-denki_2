@@ -27,7 +27,13 @@
             <p>
                 製品のご購入、ご相談、お見積もりのご依頼は
                 以下のフォームをご利用ください。
+
             </p>
+
+            <h3>
+                メールにて納期と費用のお見積りをお返事します。仕様が決まったら請求書を送ります。入金をもってご注文確定とします。
+                オーダーメイド品のため予定納期より２ヶ月以上遅延する場合および製作不能の場合を除いて入金後のキャンセルは出来ません。
+            </h3>
 
             <form id="contactForm">
 
@@ -66,20 +72,66 @@
 const params =
     new URLSearchParams(window.location.search);
 
+
 const product =
     params.get("product");
+
+const type =
+    params.get("type");
+
+const model =
+    params.get("model");
+
+const price =
+    params.get("price");
+
+const color =
+    params.get("color");
+
+const quantity =
+    params.get("quantity");
+
+const total =
+    params.get("total");
+
+
 
 if(product){
 
     document.addEventListener(
         "DOMContentLoaded",
         () => {
-
             document.getElementById("message").value =
-                "購入希望製品：" +
-                product +
-                "\n\n";
+            "購入希望製品：" +
+            product +
+            "\n" +
 
+            "製品種別：" +
+             type +
+            "\n" +
+
+            "型番：" +
+            model +
+            "\n" +
+
+            "カラー：" +
+            color +
+            "\n" +
+
+            "単価：" +
+            Number(price).toLocaleString() +
+            "円\n" +
+
+            "数量：" +
+            quantity +
+            "\n" +
+
+            "合計金額：" +
+            Number(total).toLocaleString() +
+            "円＋送料\n\n";
+
+           
+            
         }
     );
 }
